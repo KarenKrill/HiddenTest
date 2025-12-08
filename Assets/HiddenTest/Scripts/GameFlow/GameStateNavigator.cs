@@ -1,6 +1,6 @@
 ﻿using KarenKrill.UniCore.StateSystem.Abstractions;
 
-namespace HiddenTest.GameFlow.GameStates
+namespace HiddenTest.GameFlow
 {
     using Abstractions;
 
