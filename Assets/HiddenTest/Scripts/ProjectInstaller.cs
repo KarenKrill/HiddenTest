@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
 using Zenject;
 using KarenKrill.UniCore.Diagnostics;
 using KarenKrill.UniCore.Logging;
@@ -40,6 +41,8 @@ namespace HiddenTest
         [SerializeField]
         private AudioController _audioController;
 
+        private ILogger _logger;
+
         private void OnApplicationQuit()
         {
             var gameStateNavigator = Container.Resolve<IGameStateNavigator>();
@@ -56,6 +59,13 @@ namespace HiddenTest
 #else
             Container.Bind<ILogger>().To<StubLogger>().FromNew().AsSingle();
 #endif
+            UniTaskScheduler.UnobservedTaskException += OnUnobservedTaskException;
+        }
+
+        private void OnUnobservedTaskException(System.Exception ex)
+        {
+            _logger ??= Container.TryResolve<ILogger>();
+            _logger?.LogError(nameof(ProjectInstaller), string.Format("Unobserved task exception {0}", ex));
         }
 
         private void InstallGameFlow()
