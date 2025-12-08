@@ -12,6 +12,7 @@ using KarenKrill.UniCore.UI.Presenters.Abstractions;
 using KarenKrill.UniCore.UI.Views;
 using KarenKrill.UniCore.Utilities;
 using KarenKrill;
+using KarenKrill.ContentLoading;
 using HiddenTest.GameFlow.Abstractions;
 using HiddenTest.GameFlow;
 
@@ -28,6 +29,7 @@ namespace HiddenTest
             InstallGameConfig();
             InstallDiagnostics();
             InstallAudio();
+            InstallContentLoading();
         }
 
         [SerializeField]
@@ -141,6 +143,11 @@ namespace HiddenTest
         private void InstallAudio()
         {
             Container.BindInterfacesAndSelfTo<AudioController>().FromInstance(_audioController).AsSingle();
+        }
+
+        private void InstallContentLoading()
+        {
+            Container.BindInterfacesAndSelfTo<SceneLoader>().FromNew().AsSingle();
         }
     }
 }

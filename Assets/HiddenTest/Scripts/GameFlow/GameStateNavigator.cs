@@ -15,12 +15,12 @@ namespace HiddenTest.GameFlow
 
         public void LoadMainMenu()
         {
-            _stateSwitcher.TransitTo(GameState.MainMenu);
+            _stateSwitcher.TransitTo(GameState.Loading);
         }
 
         public void LoadLevel(int levelId)
         {
-            _stateSwitcher.TransitTo(GameState.LevelGameplay, levelId);
+            _stateSwitcher.TransitTo(GameState.Loading, new LevelLoadContext(levelId));
         }
 
         public void FinishLevel()
