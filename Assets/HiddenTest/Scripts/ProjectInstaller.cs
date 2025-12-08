@@ -32,7 +32,7 @@ namespace HiddenTest
         private void OnApplicationQuit()
         {
             var gameStateNavigator = Container.Resolve<IGameStateNavigator>();
-            if (gameStateNavigator.CurrentState != GameState.Exit)
+            if (gameStateNavigator.State != GameState.Exit)
             {
                 gameStateNavigator.Exit();
             }

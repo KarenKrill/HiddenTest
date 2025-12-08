@@ -6,7 +6,7 @@ namespace HiddenTest.GameFlow
 
     public class GameStateNavigator : IGameStateNavigator
     {
-        public GameState CurrentState => _stateSwitcher.State;
+        public GameState State => _stateSwitcher.State;
 
         public GameStateNavigator(IStateSwitcher<GameState> stateSwitcher)
         {

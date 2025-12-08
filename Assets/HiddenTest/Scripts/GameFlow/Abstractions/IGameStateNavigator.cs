@@ -2,7 +2,7 @@
 {
     public interface IGameStateNavigator
     {
-        GameState CurrentState { get; }
+        GameState State { get; }
 
         void LoadMainMenu();
         void LoadLevel(int levelId);
