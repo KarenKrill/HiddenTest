@@ -1,0 +1,19 @@
+{
+    "name": "HiddenTest.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f020d844ff77090499c16aa5e05c5d2f",
+        "GUID:c24d342672367b243aff1910ea83a56d"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
