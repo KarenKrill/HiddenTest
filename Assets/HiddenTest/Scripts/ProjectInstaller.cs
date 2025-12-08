@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using KarenKrill.UniCore.Diagnostics;
 using KarenKrill.UniCore.Logging;
 using KarenKrill.UniCore.StateSystem;
 using KarenKrill.UniCore.StateSystem.Abstractions;
@@ -24,6 +25,7 @@ namespace HiddenTest
             InstallViewFactory();
             InstallPresenters();
             InstallGameConfig();
+            InstallDiagnostics();
             InstallAudio();
         }
 
@@ -33,6 +35,8 @@ namespace HiddenTest
         private List<GameObject> _uiPrefabs;
         [SerializeField]
         private GameConfig _gameConfig;
+        [SerializeField]
+        private DiagnosticsProvider _diagnosticsProvider;
         [SerializeField]
         private AudioController _audioController;
 
@@ -117,6 +121,11 @@ namespace HiddenTest
         private void InstallGameConfig()
         {
             Container.BindInterfacesAndSelfTo<GameConfig>().FromInstance(_gameConfig).AsSingle();
+        }
+
+        private void InstallDiagnostics()
+        {
+            Container.BindInterfacesAndSelfTo<DiagnosticsProvider>().FromInstance(_diagnosticsProvider).AsSingle();
         }
 
         private void InstallAudio()
