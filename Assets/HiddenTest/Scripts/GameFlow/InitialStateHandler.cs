@@ -2,7 +2,7 @@
 using UnityEngine;
 using KarenKrill.UniCore.StateSystem.Abstractions;
 using KarenKrill.UniCore.UI.Presenters.Abstractions;
-using KarenKrill.Abstractions;
+using KarenKrill.Audio.Abstractions;
 using HiddenTest.Abstractions;
 using HiddenTest.UI.Views.Abstractions;
 
