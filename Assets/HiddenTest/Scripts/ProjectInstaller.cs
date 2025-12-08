@@ -31,10 +31,10 @@ namespace HiddenTest
 
         private void OnApplicationQuit()
         {
-            var gameStateSwitcher = Container.Resolve<IStateSwitcher<GameState>>();
-            if (gameStateSwitcher.State != GameState.Exit)
+            var gameStateNavigator = Container.Resolve<IGameStateNavigator>();
+            if (gameStateNavigator.CurrentState != GameState.Exit)
             {
-                gameStateSwitcher.TransitTo(GameState.Exit);
+                gameStateNavigator.Exit();
             }
         }
 
