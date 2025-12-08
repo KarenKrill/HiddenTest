@@ -22,12 +22,15 @@ namespace HiddenTest
             InstallGameFlow();
             InstallViewFactory();
             InstallPresenters();
+            InstallGameConfig();
         }
 
         [SerializeField]
         private Transform _uiRootTransform;
         [SerializeField]
         private List<GameObject> _uiPrefabs;
+        [SerializeField]
+        private GameConfig _gameConfig;
 
         private void OnApplicationQuit()
         {
@@ -105,6 +108,11 @@ namespace HiddenTest
             {
                 Container.BindInterfacesTo(presenterType).FromNew().AsSingle();
             }
+        }
+
+        private void InstallGameConfig()
+        {
+            Container.BindInterfacesAndSelfTo<GameConfig>().FromInstance(_gameConfig).AsSingle();
         }
     }
 }

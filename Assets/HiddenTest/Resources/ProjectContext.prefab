@@ -259,3 +259,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: HiddenTest::HiddenTest.ProjectInstaller
   _uiRootTransform: {fileID: 7028014196230718207}
   _uiPrefabs: []
+  _gameConfig: {fileID: 11400000, guid: 8c6ff77f87d37914998fbf4938248011, type: 2}
