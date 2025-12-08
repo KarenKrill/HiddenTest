@@ -2,6 +2,7 @@
     "name": "HiddenTest",
     "rootNamespace": "HiddenTest",
     "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
         "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
         "GUID:c7d32845b9c2493418a847d10d7aa0d4",
         "GUID:7f007642e137ecb449a3e9961d029924",
@@ -12,6 +13,7 @@
         "GUID:c4d2c914c542f7a44a74a26c3bb547c1",
         "GUID:2e99e42ee65569241a08ab41d4155790",
         "GUID:c2987d4986b30634e8806eea326f5f0e",
+        "GUID:8743d8529d7751546a86b044dd59f198",
         "GUID:1e2665c9624f06b4db14d1269fad51e8",
         "GUID:87d6c2a0af978714da0aef34a6f5c573",
         "GUID:ada1ee24e6b2ca342bb93c2828eb7f81"

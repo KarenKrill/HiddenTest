@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
 using Zenject;
 using KarenKrill.UniCore.Diagnostics;
 using KarenKrill.UniCore.Logging;
@@ -11,6 +12,7 @@ using KarenKrill.UniCore.UI.Presenters.Abstractions;
 using KarenKrill.UniCore.UI.Views;
 using KarenKrill.UniCore.Utilities;
 using KarenKrill;
+using KarenKrill.ContentLoading;
 using HiddenTest.GameFlow.Abstractions;
 using HiddenTest.GameFlow;
 
@@ -27,6 +29,7 @@ namespace HiddenTest
             InstallGameConfig();
             InstallDiagnostics();
             InstallAudio();
+            InstallContentLoading();
         }
 
         [SerializeField]
@@ -39,6 +42,8 @@ namespace HiddenTest
         private DiagnosticsProvider _diagnosticsProvider;
         [SerializeField]
         private AudioController _audioController;
+
+        private ILogger _logger;
 
         private void OnApplicationQuit()
         {
@@ -56,6 +61,13 @@ namespace HiddenTest
 #else
             Container.Bind<ILogger>().To<StubLogger>().FromNew().AsSingle();
 #endif
+            UniTaskScheduler.UnobservedTaskException += OnUnobservedTaskException;
+        }
+
+        private void OnUnobservedTaskException(System.Exception ex)
+        {
+            _logger ??= Container.TryResolve<ILogger>();
+            _logger?.LogError(nameof(ProjectInstaller), string.Format("Unobserved task exception {0}", ex));
         }
 
         private void InstallGameFlow()
@@ -131,6 +143,11 @@ namespace HiddenTest
         private void InstallAudio()
         {
             Container.BindInterfacesAndSelfTo<AudioController>().FromInstance(_audioController).AsSingle();
+        }
+
+        private void InstallContentLoading()
+        {
+            Container.BindInterfacesAndSelfTo<SceneLoader>().FromNew().AsSingle();
         }
     }
 }
