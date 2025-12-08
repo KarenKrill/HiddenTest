@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using KarenKrill.UniCore.Diagnostics;
 using KarenKrill.UniCore.Logging;
 using KarenKrill.UniCore.StateSystem;
 using KarenKrill.UniCore.StateSystem.Abstractions;
@@ -9,6 +10,7 @@ using KarenKrill.UniCore.UI.Presenters;
 using KarenKrill.UniCore.UI.Presenters.Abstractions;
 using KarenKrill.UniCore.UI.Views;
 using KarenKrill.UniCore.Utilities;
+using KarenKrill;
 using HiddenTest.GameFlow.Abstractions;
 using HiddenTest.GameFlow;
 
@@ -22,12 +24,21 @@ namespace HiddenTest
             InstallGameFlow();
             InstallViewFactory();
             InstallPresenters();
+            InstallGameConfig();
+            InstallDiagnostics();
+            InstallAudio();
         }
 
         [SerializeField]
         private Transform _uiRootTransform;
         [SerializeField]
         private List<GameObject> _uiPrefabs;
+        [SerializeField]
+        private GameConfig _gameConfig;
+        [SerializeField]
+        private DiagnosticsProvider _diagnosticsProvider;
+        [SerializeField]
+        private AudioController _audioController;
 
         private void OnApplicationQuit()
         {
@@ -105,6 +116,21 @@ namespace HiddenTest
             {
                 Container.BindInterfacesTo(presenterType).FromNew().AsSingle();
             }
+        }
+
+        private void InstallGameConfig()
+        {
+            Container.BindInterfacesAndSelfTo<GameConfig>().FromInstance(_gameConfig).AsSingle();
+        }
+
+        private void InstallDiagnostics()
+        {
+            Container.BindInterfacesAndSelfTo<DiagnosticsProvider>().FromInstance(_diagnosticsProvider).AsSingle();
+        }
+
+        private void InstallAudio()
+        {
+            Container.BindInterfacesAndSelfTo<AudioController>().FromInstance(_audioController).AsSingle();
         }
     }
 }

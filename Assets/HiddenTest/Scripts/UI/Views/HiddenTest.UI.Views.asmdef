@@ -1,13 +1,13 @@
 {
-    "name": "HiddenTest.GameFlow",
-    "rootNamespace": "HiddenTest.GameFlow",
+    "name": "HiddenTest.UI.Views",
+    "rootNamespace": "HiddenTest.UI.Views",
     "references": [
-        "GUID:a00509254bb803a4d89b998f2d85ff80",
-        "GUID:760c2e9496ca26e4d8f30deca2d52b53",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:bb790f022996c434fa47a5a2684d1d2b",
         "GUID:7a46791a36c29db4382df4ea59e1f085",
-        "GUID:c2987d4986b30634e8806eea326f5f0e",
-        "GUID:1e2665c9624f06b4db14d1269fad51e8",
-        "GUID:87d6c2a0af978714da0aef34a6f5c573",
+        "GUID:c4d2c914c542f7a44a74a26c3bb547c1",
         "GUID:8a5a7397b044f6f41ad30236064a8e13"
     ],
     "includePlatforms": [],
