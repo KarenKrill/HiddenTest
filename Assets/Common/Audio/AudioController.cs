@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace KarenKrill
+namespace KarenKrill.Audio
 {
     using Abstractions;
 
