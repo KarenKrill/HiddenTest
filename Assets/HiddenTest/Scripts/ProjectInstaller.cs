@@ -10,6 +10,7 @@ using KarenKrill.UniCore.UI.Presenters.Abstractions;
 using KarenKrill.UniCore.UI.Views;
 using KarenKrill.UniCore.Utilities;
 using HiddenTest.GameFlow.Abstractions;
+using HiddenTest.GameFlow;
 
 namespace HiddenTest
 {
@@ -60,11 +61,13 @@ namespace HiddenTest
                     }
                 })
                 .NonLazy();
+
             var stateHandlerTypes = ReflectionUtilities.GetInheritorTypes(typeof(IStateHandler<GameState>), System.Type.EmptyTypes);
             foreach (var stateHandlerType in stateHandlerTypes)
             {
                 Container.BindInterfacesTo(stateHandlerType).AsSingle();
             }
+
             Container.BindInterfacesTo<ManagedStateMachine<GameState>>().AsSingle().OnInstantiated((context, target) =>
             {
                 if (target is ManagedStateMachine<GameState> managedStateMachine)
@@ -72,6 +75,8 @@ namespace HiddenTest
                     managedStateMachine.Start();
                 }
             }).NonLazy();
+
+            Container.BindInterfacesAndSelfTo<GameStateNavigator>().AsSingle();
         }
 
         private void InstallViewFactory()
