@@ -9,6 +9,7 @@ using KarenKrill.UniCore.UI.Presenters;
 using KarenKrill.UniCore.UI.Presenters.Abstractions;
 using KarenKrill.UniCore.UI.Views;
 using KarenKrill.UniCore.Utilities;
+using KarenKrill;
 using HiddenTest.GameFlow.Abstractions;
 using HiddenTest.GameFlow;
 
@@ -23,6 +24,7 @@ namespace HiddenTest
             InstallViewFactory();
             InstallPresenters();
             InstallGameConfig();
+            InstallAudio();
         }
 
         [SerializeField]
@@ -31,6 +33,8 @@ namespace HiddenTest
         private List<GameObject> _uiPrefabs;
         [SerializeField]
         private GameConfig _gameConfig;
+        [SerializeField]
+        private AudioController _audioController;
 
         private void OnApplicationQuit()
         {
@@ -113,6 +117,11 @@ namespace HiddenTest
         private void InstallGameConfig()
         {
             Container.BindInterfacesAndSelfTo<GameConfig>().FromInstance(_gameConfig).AsSingle();
+        }
+
+        private void InstallAudio()
+        {
+            Container.BindInterfacesAndSelfTo<AudioController>().FromInstance(_audioController).AsSingle();
         }
     }
 }
