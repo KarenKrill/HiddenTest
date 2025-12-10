@@ -1,5 +1,4 @@
 ﻿#nullable enable
-using System;
 using System.Linq;
 using UnityEngine;
 using KarenKrill.UniCore.StateSystem.Abstractions;
@@ -31,10 +30,6 @@ namespace HiddenTest.GameFlow
             if (context is LevelLoadContext levelLoadContext && levelLoadContext.LevelIndex >= 0)
             {
                 _levelConfig = _gameConfig.LevelsConfig[levelLoadContext.LevelIndex];
-            }
-            else
-            {
-                throw new ArgumentException($"Can't start {nameof(GameState.LevelGameplay)} without {nameof(LevelLoadContext)} context", nameof(context));
             }
         }
 
