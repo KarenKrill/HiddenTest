@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed9485776f382354cb960ebf061a2b17, type: 3}
-  m_Name: GameConfig
+  m_Name: GameSettingsConfig
   m_EditorClassIdentifier: HiddenTest::HiddenTest.GameConfig
   _showDiagnostics: 1
   _qualityLevel: 5

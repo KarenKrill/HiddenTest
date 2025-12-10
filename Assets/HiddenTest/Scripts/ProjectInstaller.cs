@@ -37,7 +37,7 @@ namespace HiddenTest
         [SerializeField]
         private List<GameObject> _uiPrefabs;
         [SerializeField]
-        private GameConfig _gameConfig;
+        private GameSettingsConfig _gameSettingsConfig;
         [SerializeField]
         private DiagnosticsProvider _diagnosticsProvider;
         [SerializeField]
@@ -132,7 +132,7 @@ namespace HiddenTest
 
         private void InstallGameConfig()
         {
-            Container.BindInterfacesAndSelfTo<GameConfig>().FromInstance(_gameConfig).AsSingle();
+            Container.BindInterfacesAndSelfTo<GameSettingsConfig>().FromInstance(_gameSettingsConfig).AsSingle();
         }
 
         private void InstallDiagnostics()
