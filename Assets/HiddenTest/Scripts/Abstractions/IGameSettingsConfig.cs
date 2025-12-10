@@ -3,7 +3,7 @@ using System;
 
 namespace HiddenTest.Abstractions
 {
-    public interface IGameConfig
+    public interface IGameSettingsConfig
     {
         public bool ShowDiagnostics { get; set; }
         public int QualityLevel { get; set; }

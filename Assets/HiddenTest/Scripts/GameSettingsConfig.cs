@@ -6,7 +6,7 @@ namespace HiddenTest
     using Abstractions;
     
     [CreateAssetMenu(fileName = nameof(GameSettingsConfig), menuName = "Scriptable Objects/" + nameof(GameSettingsConfig))]
-    public class GameSettingsConfig : ScriptableObject, IGameConfig
+    public class GameSettingsConfig : ScriptableObject, IGameSettingsConfig
     {
         public bool ShowDiagnostics
         {

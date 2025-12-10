@@ -16,13 +16,13 @@ namespace HiddenTest.GameFlow
 
         public InitialStateHandler(ILogger logger,
             IGameStateNavigator gameFlow,
-            IGameConfig gameConfig,
+            IGameSettingsConfig gameSettingsConfig,
             IAudioController audioController,
             IPresenter<IDiagnosticsView> diagnosticsPresenter)
         {
             _logger = logger;
             _gameFlow = gameFlow;
-            _gameConfig = gameConfig;
+            _gameSettingsConfig = gameSettingsConfig;
             _audioController = audioController;
             _diagnosticsPresenter = diagnosticsPresenter;
         }
@@ -30,18 +30,18 @@ namespace HiddenTest.GameFlow
         public void Enter(GameState prevState, object? context = null)
         {
             _logger.Log(nameof(InitialStateHandler), nameof(Enter));
-            _gameConfig.ShowDiagnosticsChanged += OnShowDiagnosticsChanged;
-            _gameConfig.MasterVolumeChanged += OnMasterVolumeChanged;
-            _gameConfig.MusicVolumeChanged += OnMusicVolumeChanged;
-            _gameConfig.SfxVolumeChanged += OnSfxVolumeChanged;
-            _gameConfig.QualityLevelChanged += OnQualityLevelChanged;
-            if (_gameConfig.ShowDiagnostics)
+            _gameSettingsConfig.ShowDiagnosticsChanged += OnShowDiagnosticsChanged;
+            _gameSettingsConfig.MasterVolumeChanged += OnMasterVolumeChanged;
+            _gameSettingsConfig.MusicVolumeChanged += OnMusicVolumeChanged;
+            _gameSettingsConfig.SfxVolumeChanged += OnSfxVolumeChanged;
+            _gameSettingsConfig.QualityLevelChanged += OnQualityLevelChanged;
+            if (_gameSettingsConfig.ShowDiagnostics)
             {
                 _diagnosticsPresenter.Enable();
             }
-            _audioController.MasterVolume = _gameConfig.MasterVolume;
-            _audioController.MusicVolume = _gameConfig.MusicVolume;
-            _audioController.SfxVolume = _gameConfig.SfxVolume;
+            _audioController.MasterVolume = _gameSettingsConfig.MasterVolume;
+            _audioController.MusicVolume = _gameSettingsConfig.MusicVolume;
+            _audioController.SfxVolume = _gameSettingsConfig.SfxVolume;
             _gameFlow.LoadMainMenu();
         }
 
@@ -52,7 +52,7 @@ namespace HiddenTest.GameFlow
 
         private readonly ILogger _logger;
         private readonly IGameStateNavigator _gameFlow;
-        private readonly IGameConfig _gameConfig;
+        private readonly IGameSettingsConfig _gameSettingsConfig;
         private readonly IAudioController _audioController;
         private readonly IPresenter<IDiagnosticsView> _diagnosticsPresenter;
 
