@@ -15,6 +15,7 @@ using KarenKrill.Audio;
 using KarenKrill.ContentLoading;
 using HiddenTest.GameFlow.Abstractions;
 using HiddenTest.GameFlow;
+using HiddenTest.Gameplay;
 
 namespace HiddenTest
 {
@@ -38,6 +39,8 @@ namespace HiddenTest
         private List<GameObject> _uiPrefabs;
         [SerializeField]
         private GameSettingsConfig _gameSettingsConfig;
+        [SerializeField]
+        private GameConfig _gameConfig;
         [SerializeField]
         private DiagnosticsProvider _diagnosticsProvider;
         [SerializeField]
@@ -133,6 +136,7 @@ namespace HiddenTest
         private void InstallGameConfig()
         {
             Container.BindInterfacesAndSelfTo<GameSettingsConfig>().FromInstance(_gameSettingsConfig).AsSingle();
+            Container.BindInterfacesAndSelfTo<GameConfig>().FromInstance(_gameConfig).AsSingle();
         }
 
         private void InstallDiagnostics()
