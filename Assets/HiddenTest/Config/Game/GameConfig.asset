@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b7d937287b9af46ace1effc47841e2, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: HiddenTest.Gameplay::HiddenTest.Gameplay.GameConfig
-  _levelsConfig: []
+  _levelsConfig:
+  - {fileID: 11400000, guid: 5fc573d1242b7da43b2b6265e7f4c225, type: 2}
