@@ -6,6 +6,7 @@ namespace HiddenTest.GameFlow.Abstractions
         Loading,
         MainMenu,
         LevelGameplay,
+        Pause,
         LevelEnd,
         Exit
     }

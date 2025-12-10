@@ -13,7 +13,8 @@ namespace HiddenTest.GameFlow.Abstractions
             { GameState.Initial, new List<GameState> { GameState.Loading, GameState.Exit } },
             { GameState.Loading, new List<GameState> { GameState.MainMenu, GameState.LevelGameplay, GameState.Exit } },
             { GameState.MainMenu, new List<GameState> { GameState.Loading, GameState.Exit } },
-            { GameState.LevelGameplay, new List<GameState> { GameState.Loading, GameState.LevelEnd, GameState.Exit } },
+            { GameState.LevelGameplay, new List<GameState> { GameState.Pause, GameState.LevelEnd } },
+            { GameState.Pause, new List<GameState> { GameState.Loading, GameState.LevelEnd, GameState.Exit } },
             { GameState.LevelEnd, new List<GameState> { GameState.Loading, GameState.Exit } },
             { GameState.Exit, new List<GameState>() }
         };
