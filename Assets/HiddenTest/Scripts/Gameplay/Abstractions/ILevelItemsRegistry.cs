@@ -9,11 +9,9 @@ namespace HiddenTest.Gameplay.Abstractions
         public IReadOnlyDictionary<int, IHiddenObject> Items { get; }
 
         public event Action<int, IHiddenObject>? ItemRegistered;
-        public event Action<int>? ItemUnregistered;
-        public event Action? RepositoryCleared;
+        public event Action<int, IHiddenObject>? ItemUnregistered;
 
         public void Register(int id, IHiddenObject hiddenObject);
         public void Unregister(int id);
-        public void Clear();
     }
 }

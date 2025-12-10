@@ -8,9 +8,10 @@ namespace HiddenTest.Gameplay
     
     public class HiddenObjectBehaviour : MonoBehaviour, IHiddenObject, IClickHandler
     {
+        public IItemConfig Config => _config;
         public GameObject ParentGameObject => gameObject;
 
-        public event Action Clicked;
+        public event Action<IHiddenObject> Clicked;
 
         [Inject]
         public void Initialize(ILevelItemsRegistry levelItemsRegistry)
@@ -18,7 +19,7 @@ namespace HiddenTest.Gameplay
             _levelItemsRegistry = levelItemsRegistry;
         }
 
-        public void OnClick() => Clicked?.Invoke();
+        public void OnClick() => Clicked?.Invoke(this);
 
         [SerializeField]
         private ItemConfig _config;
