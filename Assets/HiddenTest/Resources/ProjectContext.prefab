@@ -314,7 +314,8 @@ MonoBehaviour:
   - {fileID: 3657630308797553860, guid: d2119769af669c94f8a74e556757f544, type: 3}
   - {fileID: 8134017537965800947, guid: 248b4d13d49083d439cb479d1001a3e2, type: 3}
   - {fileID: 6109899425050827768, guid: 6b4263607ef3639489cbbcae697007e2, type: 3}
-  _gameConfig: {fileID: 11400000, guid: 8c6ff77f87d37914998fbf4938248011, type: 2}
+  _gameSettingsConfig: {fileID: 11400000, guid: 8c6ff77f87d37914998fbf4938248011, type: 2}
+  _gameConfig: {fileID: 11400000, guid: e530016d77cd08549a3fa59de915b308, type: 2}
   _diagnosticsProvider: {fileID: 1493420373662231180}
   _audioController: {fileID: 7990708565885750308}
 --- !u!1001 &245345490517244421

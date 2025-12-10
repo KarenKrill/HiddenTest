@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace HiddenTest.Editor
 {
-    [CustomEditor(typeof(GameConfig))]
+    [CustomEditor(typeof(GameSettingsConfig))]
     public class GameConfigEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()

@@ -17,9 +17,9 @@ namespace HiddenTest.UI.Presenters
 
         public MainMenuPresenter(IViewFactory viewFactory,
             IPresenterNavigator navigator,
-            IGameConfig gameConfig) : base(viewFactory, navigator)
+            IGameSettingsConfig gameSettingsConfig) : base(viewFactory, navigator)
         {
-            _settingsPresenter = new SettingsMenuPresenter(viewFactory, navigator, gameConfig);
+            _settingsPresenter = new SettingsMenuPresenter(viewFactory, navigator, gameSettingsConfig);
         }
 
         protected override void Subscribe()
