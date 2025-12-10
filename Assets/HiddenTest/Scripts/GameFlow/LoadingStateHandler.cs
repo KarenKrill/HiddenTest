@@ -80,7 +80,7 @@ namespace HiddenTest.GameFlow
                     new SceneLoadParameters(progressAction: OnSceneLoadProgressChanged,
                         activationRequestAction: OnActivationRequested),
                     cancellationToken);
-                _stateSwitcher.TransitTo(GameState.LevelGameplay);
+                _stateSwitcher.TransitTo(GameState.LevelGameplay, loadingContext);
             }
             else
             {

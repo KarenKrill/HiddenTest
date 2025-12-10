@@ -31,6 +31,7 @@ namespace HiddenTest
             InstallDiagnostics();
             InstallAudio();
             InstallContentLoading();
+            InstallLevelItemsRegistry();
         }
 
         [SerializeField]
@@ -152,6 +153,11 @@ namespace HiddenTest
         private void InstallContentLoading()
         {
             Container.BindInterfacesAndSelfTo<SceneLoader>().FromNew().AsSingle();
+        }
+
+        private void InstallLevelItemsRegistry()
+        {
+            Container.BindInterfacesAndSelfTo<LevelItemsRegistry>().AsSingle();
         }
     }
 }

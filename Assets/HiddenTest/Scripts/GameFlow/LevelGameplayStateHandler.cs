@@ -1,51 +1,67 @@
 ﻿#nullable enable
+using System;
+using System.Linq;
+using UnityEngine;
 using KarenKrill.UniCore.StateSystem.Abstractions;
+using HiddenTest.Gameplay.Abstractions;
 using HiddenTest.UI.Presenters.Abstractions;
 
 namespace HiddenTest.GameFlow
 {
     using Abstractions;
 
-    public class LevelGameplayStateHandler : PresentableStateHandlerBase<GameState>, IStateHandler<GameState>
+    public class LevelGameplayStateHandler : LevelGameplayStateHandlerBase, IStateHandler<GameState>
     {
-        public override GameState State => GameState.LevelGameplay;
-
         public LevelGameplayStateHandler(IGameStateNavigator gameStateNavigator,
             IInGameMenuPresenter inGameMenuPresenter,
-            IPauseMenuPresenter pauseMenuPresenter) : base(inGameMenuPresenter)
+            IPauseMenuPresenter pauseMenuPresenter,
+            IGameConfig gameConfig,
+            ILevelItemsRegistry levelItemsRegistry) :
+            base(gameStateNavigator, inGameMenuPresenter, pauseMenuPresenter)
         {
-            _gameStateNavigator = gameStateNavigator;
-            _inGameMenuPresenter = inGameMenuPresenter;
-            _pauseMenuPresenter = pauseMenuPresenter;
+            _gameConfig = gameConfig;
+            _levelItemsRegistry = levelItemsRegistry;
+            _levelItemsRegistry.ItemRegistered += OnLevelItemRegistered;
+            _levelItemsRegistry.ItemUnregistered += OnLevelItemUnregistered;
         }
 
         public override void Enter(GameState prevState, object? context = null)
         {
             base.Enter(prevState);
-            _inGameMenuPresenter.Pause += OnPauseRequested;
-            _pauseMenuPresenter.Resume += OnResumeRequested;
-            _pauseMenuPresenter.Restart += OnRestartRequested;
-            _pauseMenuPresenter.MainMenu += OnMainMenuRequested;
-            _pauseMenuPresenter.Exit += OnExitRequested;
+            if (context is LevelLoadContext levelLoadContext && levelLoadContext.LevelIndex >= 0)
+            {
+                _levelConfig = _gameConfig.LevelsConfig[levelLoadContext.LevelIndex];
+            }
+            else
+            {
+                throw new ArgumentException($"Can't start {nameof(GameState.LevelGameplay)} without {nameof(LevelLoadContext)} context", nameof(context));
+            }
         }
 
         public override void Exit(GameState nextState)
         {
-            _inGameMenuPresenter.Pause -= OnPauseRequested;
-            _pauseMenuPresenter.Resume -= OnResumeRequested;
-            _pauseMenuPresenter.Disable();
             base.Exit(nextState);
         }
 
-        private readonly IGameStateNavigator _gameStateNavigator;
-        private readonly IInGameMenuPresenter _inGameMenuPresenter;
-        private readonly IPauseMenuPresenter _pauseMenuPresenter;
+        private readonly IGameConfig _gameConfig;
+        private ILevelConfig? _levelConfig;
+        private readonly ILevelItemsRegistry _levelItemsRegistry;
 
-        private void OnPauseRequested() => _pauseMenuPresenter.Enable();
-        private void OnResumeRequested() => _pauseMenuPresenter.Disable();
-        private void OnRestartRequested() => _gameStateNavigator.LoadLevel(0);
-        private void OnMainMenuRequested() => _gameStateNavigator.LoadMainMenu();
-        private void OnExitRequested() => _gameStateNavigator.Exit();
-
+        private void OnLevelItemRegistered(int id, IHiddenObject hiddenObject)
+        {
+            hiddenObject.Clicked += OnHiddenObjectClicked;
+        }
+        private void OnLevelItemUnregistered(int id, IHiddenObject hiddenObject)
+        {
+            hiddenObject.Clicked -= OnHiddenObjectClicked;
+        }
+        private void OnHiddenObjectClicked(IHiddenObject hiddenObject)
+        {
+            var itemConfig = _levelConfig?.Items.FirstOrDefault(item => item.Id == hiddenObject.Config.Id);
+            if (itemConfig != null)
+            {
+                Debug.Log($"{itemConfig.Name} clicked");
+            }
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace HiddenTest.Gameplay
         {
             get
             {
-                if (_enabledItems == null)
+                if (_enabledItems?.Count == 0)
                 {
                     InitEnabledItemsList();
                 }
@@ -32,7 +32,7 @@ namespace HiddenTest.Gameplay
         [SerializeField]
         private List<LevelConfigItem> _items = new();
 
-        private List<ItemConfig> _enabledItems = null;
+        private List<ItemConfig> _enabledItems;
 
         private void OnValidate()
         {
