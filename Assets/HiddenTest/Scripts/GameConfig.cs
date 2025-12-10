@@ -10,60 +10,60 @@ namespace HiddenTest
     {
         public bool ShowDiagnostics
         {
-            get => _showDiagnosticsInternal;
+            get => _showDiagnostics;
             set
             {
-                if (_showDiagnosticsInternal != value)
+                if (_showDiagnostics != value)
                 {
-                    _showDiagnosticsInternal = value;
+                    _showDiagnostics = value;
                     ShowDiagnosticsChanged?.Invoke(value);
                 }
             }
         }
         public int QualityLevel
         {
-            get => _qualityLevelInternal;
+            get => _qualityLevel;
             set
             {
-                if (_qualityLevelInternal != value)
+                if (_qualityLevel != value)
                 {
-                    _qualityLevelInternal = value;
+                    _qualityLevel = value;
                     QualityLevelChanged?.Invoke(value);
                 }
             }
         }
         public float MasterVolume
         {
-            get => _masterVolumeInternal;
+            get => _masterVolume;
             set
             {
-                if (_masterVolumeInternal != value)
+                if (_masterVolume != value)
                 {
-                    _masterVolumeInternal = value;
+                    _masterVolume = value;
                     MasterVolumeChanged?.Invoke(value);
                 }
             }
         }
         public float MusicVolume
         {
-            get => _musicVolumeInternal;
+            get => _musicVolume;
             set
             {
-                if (_musicVolumeInternal != value)
+                if (_musicVolume != value)
                 {
-                    _musicVolumeInternal = value;
+                    _musicVolume = value;
                     MusicVolumeChanged?.Invoke(value);
                 }
             }
         }
         public float SfxVolume
         {
-            get => _sfxVolumeInternal;
+            get => _sfxVolume;
             set
             {
-                if (_sfxVolumeInternal != value)
+                if (_sfxVolume != value)
                 {
-                    _sfxVolumeInternal = value;
+                    _sfxVolume = value;
                     SfxVolumeChanged?.Invoke(value);
                 }
             }
@@ -75,18 +75,6 @@ namespace HiddenTest
         public event Action<float> MusicVolumeChanged;
         public event Action<float> SfxVolumeChanged;
 
-        [SerializeField, HideInInspector]
-        private bool _showDiagnosticsInternal = true;
-        [SerializeField, HideInInspector, Min(0)]
-        private int _qualityLevelInternal = 0;
-        [SerializeField, HideInInspector, Range(0, 1)]
-        private float _masterVolumeInternal = 1;
-        [SerializeField, HideInInspector, Range(0, 1)]
-        private float _musicVolumeInternal = 1;
-        [SerializeField, HideInInspector, Range(0, 1)]
-        private float _sfxVolumeInternal = 1;
-
-#if UNITY_EDITOR
         [SerializeField]
         private bool _showDiagnostics = true;
         [SerializeField, Min(0)]
@@ -97,15 +85,5 @@ namespace HiddenTest
         private float _musicVolume = 1;
         [SerializeField, Range(0, 1)]
         private float _sfxVolume = 1;
-
-        private void OnValidate()
-        {
-            ShowDiagnostics = _showDiagnostics;
-            QualityLevel = _qualityLevel;
-            MasterVolume = _masterVolume;
-            MusicVolume = _musicVolume;
-            SfxVolume = _sfxVolume;
-        }
-#endif
     }
 }

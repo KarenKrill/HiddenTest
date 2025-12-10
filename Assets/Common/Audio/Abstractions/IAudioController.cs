@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace KarenKrill.Abstractions
+namespace KarenKrill.Audio.Abstractions
 {
     public interface IAudioController
     {

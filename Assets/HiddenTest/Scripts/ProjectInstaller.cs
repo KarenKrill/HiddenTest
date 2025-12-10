@@ -11,7 +11,7 @@ using KarenKrill.UniCore.UI.Presenters;
 using KarenKrill.UniCore.UI.Presenters.Abstractions;
 using KarenKrill.UniCore.UI.Views;
 using KarenKrill.UniCore.Utilities;
-using KarenKrill;
+using KarenKrill.Audio;
 using KarenKrill.ContentLoading;
 using HiddenTest.GameFlow.Abstractions;
 using HiddenTest.GameFlow;

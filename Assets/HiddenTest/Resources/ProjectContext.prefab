@@ -309,6 +309,11 @@ MonoBehaviour:
   _uiPrefabs:
   - {fileID: 8134017537965800947, guid: d7e43f8bf50ba244485f4dbbb0d91b09, type: 3}
   - {fileID: 3657630308797553860, guid: 49c1bf352f8aeb34984669b4857e5d8c, type: 3}
+  - {fileID: 3657630308797553860, guid: fb28301b838f9214fa287678afee9d3c, type: 3}
+  - {fileID: 1524831518142310894, guid: 675093e25f4e2184c8305e6a54cc3c92, type: 3}
+  - {fileID: 3657630308797553860, guid: d2119769af669c94f8a74e556757f544, type: 3}
+  - {fileID: 8134017537965800947, guid: 248b4d13d49083d439cb479d1001a3e2, type: 3}
+  - {fileID: 6109899425050827768, guid: 6b4263607ef3639489cbbcae697007e2, type: 3}
   _gameConfig: {fileID: 11400000, guid: 8c6ff77f87d37914998fbf4938248011, type: 2}
   _diagnosticsProvider: {fileID: 1493420373662231180}
   _audioController: {fileID: 7990708565885750308}

@@ -4,12 +4,13 @@ using KarenKrill.UniCore.StateSystem.Abstractions;
 namespace HiddenTest.GameFlow
 {
     using Abstractions;
+    using HiddenTest.UI.Presenters.Abstractions;
 
     public class LevelEndStateHandler : PresentableStateHandlerBase<GameState>, IStateHandler<GameState>
     {
         public override GameState State => GameState.LevelEnd;
 
-        public LevelEndStateHandler()
+        public LevelEndStateHandler(ILevelEndMenuPresenter levelEndMenuPresenter) : base(levelEndMenuPresenter)
         {
         }
 

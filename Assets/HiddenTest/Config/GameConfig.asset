@@ -12,11 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed9485776f382354cb960ebf061a2b17, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: HiddenTest::HiddenTest.GameConfig
-  _showDiagnosticsInternal: 1
-  _qualityLevelInternal: 5
-  _masterVolumeInternal: 1
-  _musicVolumeInternal: 1
-  _sfxVolumeInternal: 1
   _showDiagnostics: 1
   _qualityLevel: 5
   _masterVolume: 1
