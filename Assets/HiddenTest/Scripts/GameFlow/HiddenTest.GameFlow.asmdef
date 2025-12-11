@@ -3,6 +3,7 @@
     "rootNamespace": "HiddenTest.GameFlow",
     "references": [
         "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:6addbca9397d996498e0383e39055c8f",
         "GUID:a00509254bb803a4d89b998f2d85ff80",
         "GUID:760c2e9496ca26e4d8f30deca2d52b53",
         "GUID:7a46791a36c29db4382df4ea59e1f085",
@@ -11,6 +12,7 @@
         "GUID:1e2665c9624f06b4db14d1269fad51e8",
         "GUID:87d6c2a0af978714da0aef34a6f5c573",
         "GUID:1519f57864720904a9fcf84a5977ead9",
+        "GUID:4b1309ce241b5ce4d9f7d692e6b20e60",
         "GUID:593790f6cd5b01a4ca4142e240878b0b",
         "GUID:8a5a7397b044f6f41ad30236064a8e13"
     ],

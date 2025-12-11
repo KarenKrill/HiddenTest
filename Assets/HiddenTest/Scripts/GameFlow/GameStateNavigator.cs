@@ -3,6 +3,7 @@
 namespace HiddenTest.GameFlow
 {
     using Abstractions;
+    using log4net.Core;
 
     public class GameStateNavigator : IGameStateNavigator
     {
@@ -21,6 +22,16 @@ namespace HiddenTest.GameFlow
         public void LoadLevel(int levelId)
         {
             _stateSwitcher.TransitTo(GameState.Loading, new LevelLoadContext(levelId));
+        }
+
+        public void PauseLevel()
+        {
+            _stateSwitcher.TransitTo(GameState.Pause);
+        }
+
+        public void ResumeLevel()
+        {
+            _stateSwitcher.TransitTo(GameState.LevelGameplay);
         }
 
         public void FinishLevel()

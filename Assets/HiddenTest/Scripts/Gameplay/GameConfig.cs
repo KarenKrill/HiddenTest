@@ -10,6 +10,11 @@ namespace HiddenTest.Gameplay
     {
         public IReadOnlyList<ILevelConfig> LevelsConfig => _levelsConfig;
 
+        public int ActiveLevel { get; set; } = 0;
+
+        [field: SerializeField, Range(0, 1)]
+        public float PauseTimeScale { get; private set; } = 1f;
+
         [SerializeField]
         private List<LevelConfig> _levelsConfig = new();
     }

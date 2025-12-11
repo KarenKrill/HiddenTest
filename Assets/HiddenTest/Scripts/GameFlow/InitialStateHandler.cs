@@ -15,13 +15,13 @@ namespace HiddenTest.GameFlow
         public GameState State => GameState.Initial;
 
         public InitialStateHandler(ILogger logger,
-            IGameStateNavigator gameFlow,
+            IGameStateNavigator gameStateNavigator,
             IGameSettingsConfig gameSettingsConfig,
             IAudioController audioController,
             IPresenter<IDiagnosticsView> diagnosticsPresenter)
         {
             _logger = logger;
-            _gameFlow = gameFlow;
+            _gameStateNavigator = gameStateNavigator;
             _gameSettingsConfig = gameSettingsConfig;
             _audioController = audioController;
             _diagnosticsPresenter = diagnosticsPresenter;
@@ -42,7 +42,7 @@ namespace HiddenTest.GameFlow
             _audioController.MasterVolume = _gameSettingsConfig.MasterVolume;
             _audioController.MusicVolume = _gameSettingsConfig.MusicVolume;
             _audioController.SfxVolume = _gameSettingsConfig.SfxVolume;
-            _gameFlow.LoadMainMenu();
+            _gameStateNavigator.LoadMainMenu();
         }
 
         public void Exit(GameState nextState)
@@ -51,7 +51,7 @@ namespace HiddenTest.GameFlow
         }
 
         private readonly ILogger _logger;
-        private readonly IGameStateNavigator _gameFlow;
+        private readonly IGameStateNavigator _gameStateNavigator;
         private readonly IGameSettingsConfig _gameSettingsConfig;
         private readonly IAudioController _audioController;
         private readonly IPresenter<IDiagnosticsView> _diagnosticsPresenter;

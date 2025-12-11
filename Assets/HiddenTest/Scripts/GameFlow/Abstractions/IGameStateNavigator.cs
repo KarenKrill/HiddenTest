@@ -6,6 +6,8 @@
 
         void LoadMainMenu();
         void LoadLevel(int levelId);
+        void PauseLevel();
+        void ResumeLevel();
         void FinishLevel();
         void Exit();
     }
