@@ -16,6 +16,7 @@ using KarenKrill.ContentLoading;
 using HiddenTest.GameFlow.Abstractions;
 using HiddenTest.GameFlow;
 using HiddenTest.Gameplay;
+using HiddenTest.Input;
 
 namespace HiddenTest
 {
@@ -25,6 +26,7 @@ namespace HiddenTest
         {
             InstallLogging();
             InstallGameFlow();
+            InstallInput();
             InstallViewFactory();
             InstallPresenters();
             InstallGameConfig();
@@ -104,6 +106,11 @@ namespace HiddenTest
             }).NonLazy();
 
             Container.BindInterfacesAndSelfTo<GameStateNavigator>().AsSingle();
+        }
+
+        private void InstallInput()
+        {
+            Container.BindInterfacesAndSelfTo<InputActionService>().FromNew().AsSingle();
         }
 
         private void InstallViewFactory()
