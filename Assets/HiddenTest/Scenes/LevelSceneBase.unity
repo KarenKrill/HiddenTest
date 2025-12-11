@@ -468,7 +468,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1729978303}
-  - component: {fileID: 1729978304}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -492,25 +491,6 @@ Transform:
   - {fileID: 1277287120}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1729978304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1729978302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33e4f2549c5ca2c47a6dfb877b02b945, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: HiddenTest.Gameplay::HiddenTest.Gameplay.ClickRaycaster
-  _clickActionReference: {fileID: 3001919216989983466, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  _raycastDistance: 10
-  _cameraAutodetect: 1
-  _camera: {fileID: 0}
 --- !u!1001 &3986214212469694737
 PrefabInstance:
   m_ObjectHideFlags: 0

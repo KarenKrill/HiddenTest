@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
+using HiddenTest.Input.Abstractions;
 
 namespace HiddenTest.Gameplay
 {
@@ -7,8 +9,12 @@ namespace HiddenTest.Gameplay
 
     public class ClickRaycaster : MonoBehaviour
     {
-        [SerializeField]
-        private InputActionReference _clickActionReference;
+        [Inject]
+        public void Initialize(IPlayerActionsProvider playerActionsProvider)
+        {
+            _playerActionsProvider = playerActionsProvider;
+        }
+
         [SerializeField]
         private LayerMask _layerMask;
         [SerializeField]
@@ -19,6 +25,7 @@ namespace HiddenTest.Gameplay
         private Camera _camera;
 
         private readonly RaycastHit2D[] _hits = new RaycastHit2D[1];
+        private IPlayerActionsProvider _playerActionsProvider;
 
         private void Awake()
         {
@@ -29,26 +36,23 @@ namespace HiddenTest.Gameplay
         }
         private void OnEnable()
         {
-            _clickActionReference.action.performed += OnPointerClick;
+            _playerActionsProvider.Attack += OnPlayerAttack;
         }
         private void OnDisable()
         {
-            _clickActionReference.action.performed -= OnPointerClick;
+            _playerActionsProvider.Attack -= OnPlayerAttack;
         }
 
-        private void OnPointerClick(InputAction.CallbackContext ctx)
+        private void OnPlayerAttack()
         {
-            if (ctx.action.WasReleasedThisFrame())
+            var pos = _camera.ScreenToWorldPoint(Pointer.current.position.ReadValue());
+            var hitsCount = Physics2D.RaycastNonAlloc(pos, Vector2.zero, _hits, _raycastDistance, _layerMask);
+            if (hitsCount > 0)
             {
-                var pos = _camera.ScreenToWorldPoint(Pointer.current.position.ReadValue());
-                var hitsCount = Physics2D.RaycastNonAlloc(pos, Vector2.zero, _hits, _raycastDistance, _layerMask);
-                if (hitsCount > 0)
+                var hit = _hits[0];
+                if (hit.collider != null && hit.collider.TryGetComponent(out IClickHandler clickHandler))
                 {
-                    var hit = _hits[0];
-                    if (hit.collider != null && hit.collider.TryGetComponent(out IClickHandler clickHandler))
-                    {
-                        clickHandler.OnClick();
-                    }
+                    clickHandler.OnClick();
                 }
             }
         }
