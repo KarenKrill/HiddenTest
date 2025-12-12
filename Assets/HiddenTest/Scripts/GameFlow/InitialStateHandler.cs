@@ -35,13 +35,14 @@ namespace HiddenTest.GameFlow
             _gameSettingsConfig.MusicVolumeChanged += OnMusicVolumeChanged;
             _gameSettingsConfig.SfxVolumeChanged += OnSfxVolumeChanged;
             _gameSettingsConfig.QualityLevelChanged += OnQualityLevelChanged;
+            OnQualityLevelChanged(_gameSettingsConfig.QualityLevel);
             if (_gameSettingsConfig.ShowDiagnostics)
             {
                 _diagnosticsPresenter.Enable();
             }
-            _audioController.MasterVolume = _gameSettingsConfig.MasterVolume;
-            _audioController.MusicVolume = _gameSettingsConfig.MusicVolume;
-            _audioController.SfxVolume = _gameSettingsConfig.SfxVolume;
+            OnMasterVolumeChanged(_gameSettingsConfig.MasterVolume);
+            OnMusicVolumeChanged(_gameSettingsConfig.MusicVolume);
+            OnSfxVolumeChanged(_gameSettingsConfig.SfxVolume);
             _gameStateNavigator.LoadMainMenu();
         }
 

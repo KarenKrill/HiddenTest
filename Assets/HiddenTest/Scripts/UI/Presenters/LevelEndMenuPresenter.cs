@@ -2,12 +2,13 @@
 using UnityEngine;
 using KarenKrill.UniCore.UI.Presenters.Abstractions;
 using KarenKrill.UniCore.UI.Views.Abstractions;
+using HiddenTest.Gameplay.Abstractions;
 using HiddenTest.UI.Views.Abstractions;
 
 namespace HiddenTest.UI.Presenters
 {
     using Abstractions;
-
+    
     public class LevelEndMenuPresenter : PresenterBase<ILevelEndMenuView>, ILevelEndMenuPresenter, IPresenter<ILevelEndMenuView>
     {
         public event Action Continue;
@@ -15,9 +16,13 @@ namespace HiddenTest.UI.Presenters
         public event Action MainMenu;
         public event Action Exit;
 
-        public LevelEndMenuPresenter(IViewFactory viewFactory,
+        public LevelEndMenuPresenter(IGameConfig gameConfig,
+            ILevelSession levelSession,
+            IViewFactory viewFactory,
             IPresenterNavigator navigator) : base(viewFactory, navigator)
         {
+            _gameConfig = gameConfig;
+            _levelSession = levelSession;
         }
 
         protected override void Subscribe()
@@ -44,13 +49,17 @@ namespace HiddenTest.UI.Presenters
         private static readonly Color _wonTitleTextColor = new(1, (float)0xAC / 0xFF, (float)0x40 / 0xFF, 1);
         // Orange red color
         private static readonly Color _lostTitleTextColor = new((float)0xE1 / 0xFF, (float)0x24 / 0xFF, 0);
+        
+        private readonly IGameConfig _gameConfig;
+        private readonly ILevelSession _levelSession;
 
-        private bool _IsLevelWon => throw new NotImplementedException();
-        private bool _IsLastLevel => throw new NotImplementedException();
-        private int _LevelRating => throw new NotImplementedException();
-        private int _MaxLevelRating => throw new NotImplementedException();
-        private Sprite _RatingSprite => throw new NotImplementedException();
-        private Sprite _HollowRatingSprite => throw new NotImplementedException();
+        private bool _IsLevelWon => _levelSession.RemainingTime > float.Epsilon ||
+            _levelSession.ActiveLevel >= 0 && !_gameConfig.LevelsConfig[_levelSession.ActiveLevel].TimeLimitEnabled;
+        private bool _IsLastLevel => _levelSession.ActiveLevel + 1 >= _gameConfig.LevelsConfig.Count;
+        private int _LevelRating => _levelSession.Rating;
+        private int _MaxLevelRating => _gameConfig.MaxRating;
+        private Sprite _RatingSprite => _gameConfig.RatingIcon;
+        private Sprite _HollowRatingSprite => _gameConfig.HollowRatingIcon;
 
         private void UpdateView()
         {
@@ -67,23 +76,23 @@ namespace HiddenTest.UI.Presenters
                     View.TitleText = _gameWinText;
                     View.EnableContinue = false;
                 }
-                for (int i = 0; i < _MaxLevelRating; i++)
-                {
-                    if (i < _LevelRating)
-                    {
-                        View.SetRatingIcon(i, _RatingSprite);
-                    }
-                    else
-                    {
-                        View.SetRatingIcon(i, _HollowRatingSprite);
-                    }
-                }
             }
             else
             {
                 View.TitleText = _levelLoseText;
                 View.TitleTextColor = _lostTitleTextColor;
                 View.EnableContinue = false;
+            }
+            for (int i = 0; i < _MaxLevelRating; i++)
+            {
+                if (i < _LevelRating)
+                {
+                    View.SetRatingIcon(i, _RatingSprite);
+                }
+                else
+                {
+                    View.SetRatingIcon(i, _HollowRatingSprite);
+                }
             }
         }
 

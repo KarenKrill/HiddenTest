@@ -16,6 +16,7 @@ namespace HiddenTest.GameFlow
 
         public PauseStateHandler(ILogger logger,
             IGameConfig gameConfig,
+            ILevelSession levelSession,
             IGameStateNavigator gameStateNavigator,
             IBasicActionsProvider actionsProvider,
             IUIActionsProvider uiActionsProvider,
@@ -24,6 +25,7 @@ namespace HiddenTest.GameFlow
         {
             _logger = logger;
             _gameConfig = gameConfig;
+            _levelSession = levelSession;
             _gameStateNavigator = gameStateNavigator;
             _actionsProvider = actionsProvider;
             _uiActionsProvider = uiActionsProvider;
@@ -58,6 +60,7 @@ namespace HiddenTest.GameFlow
 
         private readonly ILogger _logger;
         private readonly IGameConfig _gameConfig;
+        private readonly ILevelSession _levelSession;
         private readonly IGameStateNavigator _gameStateNavigator;
         private readonly IBasicActionsProvider _actionsProvider;
         private readonly IUIActionsProvider _uiActionsProvider;
@@ -71,7 +74,7 @@ namespace HiddenTest.GameFlow
 
         private void OnRestartRequested()
         {
-            _gameStateNavigator.LoadLevel(_gameConfig.ActiveLevel);
+            _gameStateNavigator.LoadLevel(_levelSession.ActiveLevel);
         }
 
         private void OnMainMenu() => _gameStateNavigator.LoadMainMenu();

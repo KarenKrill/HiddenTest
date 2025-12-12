@@ -5,6 +5,7 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using KarenKrill.UniCore.StateSystem.Abstractions;
 using KarenKrill.ContentLoading.Abstractions;
+using HiddenTest.Gameplay.Abstractions;
 using HiddenTest.UI.Presenters.Abstractions;
 
 namespace HiddenTest.GameFlow
@@ -18,12 +19,14 @@ namespace HiddenTest.GameFlow
         public LoadingStateHandler(ILogger logger,
             IStateSwitcher<GameState> stateSwitcher,
             IContentLoaderPresenter contentLoaderPresenter,
-            ISceneLoader sceneLoader) : base(contentLoaderPresenter)
+            ISceneLoader sceneLoader,
+            ILevelSession levelSession) : base(contentLoaderPresenter)
         {
             _logger = logger;
             _stateSwitcher = stateSwitcher;
             _contentLoaderPresenter = contentLoaderPresenter;
             _sceneLoader = sceneLoader;
+            _levelSession = levelSession;
         }
 
         public override void Enter(GameState prevState, object? context = null)
@@ -44,9 +47,9 @@ namespace HiddenTest.GameFlow
 
         public override void Exit(GameState nextState)
         {
-            base.Exit(nextState);
             _logger.Log(nameof(LoadingStateHandler), nameof(Exit));
             Application.backgroundLoadingPriority = _initialThreadPriority;
+            base.Exit(nextState);
         }
 
         private static readonly string _loadingSceneName = "LoadingScene";
@@ -60,6 +63,7 @@ namespace HiddenTest.GameFlow
         private readonly IStateSwitcher<GameState> _stateSwitcher;
         private readonly IContentLoaderPresenter _contentLoaderPresenter;
         private readonly ISceneLoader _sceneLoader;
+        private readonly ILevelSession _levelSession;
 
         private UnityEngine.ThreadPriority _initialThreadPriority;
 
@@ -76,6 +80,7 @@ namespace HiddenTest.GameFlow
             if (context is LevelLoadContext loadingContext && loadingContext.LevelIndex >= 0)
             {
                 _contentLoaderPresenter.StageText = _levelLoadingStageText;
+                _levelSession.ActiveLevel = loadingContext.LevelIndex;
                 await _sceneLoader.LoadAsync(_levelSceneBaseName,
                     new SceneLoadParameters(progressAction: OnSceneLoadProgressChanged,
                         activationRequestAction: OnActivationRequested),
@@ -85,6 +90,7 @@ namespace HiddenTest.GameFlow
             else
             {
                 _contentLoaderPresenter.StageText = _menuLoadingStageText;
+                _levelSession.ActiveLevel = -1;
                 await _sceneLoader.LoadAsync(_mainMenuSceneName,
                     new SceneLoadParameters(progressAction: OnSceneLoadProgressChanged,
                         activationRequestAction: OnActivationRequested),

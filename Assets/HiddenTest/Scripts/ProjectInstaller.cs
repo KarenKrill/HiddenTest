@@ -15,6 +15,7 @@ using KarenKrill.Audio;
 using KarenKrill.ContentLoading;
 using HiddenTest.GameFlow.Abstractions;
 using HiddenTest.GameFlow;
+using HiddenTest.Gameplay.Abstractions;
 using HiddenTest.Gameplay;
 using HiddenTest.Input;
 
@@ -34,6 +35,8 @@ namespace HiddenTest
             InstallAudio();
             InstallContentLoading();
             InstallLevelItemsRegistry();
+            InstallHiddenObjectTaskController();
+            InstallLevelSession();
         }
 
         [SerializeField]
@@ -165,6 +168,16 @@ namespace HiddenTest
         private void InstallLevelItemsRegistry()
         {
             Container.BindInterfacesAndSelfTo<LevelItemsRegistry>().AsSingle();
+        }
+
+        private void InstallHiddenObjectTaskController()
+        {
+            Container.BindInterfacesAndSelfTo<GameTaskController<IHiddenObject>>().AsSingle();
+        }
+
+        private void InstallLevelSession()
+        {
+            Container.BindInterfacesAndSelfTo<LevelSession>().AsSingle();
         }
     }
 }
