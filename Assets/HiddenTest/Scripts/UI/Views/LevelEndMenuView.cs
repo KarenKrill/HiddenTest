@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using KarenKrill.UniCore.UI.Views;
 
 namespace HiddenTest.UI.Views
@@ -22,7 +22,14 @@ namespace HiddenTest.UI.Views
 
         public void SetRatingIcon(int index, Sprite sprite)
         {
-            _ratingImages[index].sprite = sprite;
+            if (index < _ratingImages.Count)
+            {
+                _ratingImages[index].sprite = sprite;
+            }
+            else
+            {
+                throw new NotSupportedException($"{nameof(LevelEndMenuView)} doesn't support rating more than {_ratingImages.Count}");
+            }
         }
 
         [SerializeField]
