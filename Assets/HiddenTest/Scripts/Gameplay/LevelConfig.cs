@@ -11,17 +11,20 @@ namespace HiddenTest.Gameplay
         [field: SerializeField]
         public TaskViewType TaskViewType { get; private set; }
 
+        [field: SerializeField, Min(1)]
+        public int MaxTaskCount { get; private set; } = 3;
+
         [field: SerializeField]
         public bool TimeLimitEnabled { get; private set; } = true;
 
-        [field: SerializeField]
+        [field: SerializeField, Min(0)]
         public float TimeLimitInSeconds { get; private set; }
 
-        public IReadOnlyList<IItemConfig> Items
+        public IReadOnlyDictionary<int, IItemConfig> EnabledItems
         {
             get
             {
-                if (_enabledItems?.Count == 0)
+                if (_enabledItems == null || _enabledItems.Count == 0)
                 {
                     InitEnabledItemsList();
                 }
@@ -29,10 +32,16 @@ namespace HiddenTest.Gameplay
             }
         }
 
+        [field: SerializeField]
+        public AudioClip BackgroundMusic { get; private set; }
+
+        [field: SerializeField]
+        public GameObject LevelPrefab { get; private set; }
+
         [SerializeField]
         private List<LevelConfigItem> _items = new();
 
-        private List<ItemConfig> _enabledItems;
+        private Dictionary<int, IItemConfig> _enabledItems;
 
         private void OnValidate()
         {
@@ -56,7 +65,7 @@ namespace HiddenTest.Gameplay
             {
                 if (!item.Disabled)
                 {
-                    _enabledItems.Add(item.Config);
+                    _enabledItems.Add(item.Config.Id, item.Config);
                 }
             }
         }
