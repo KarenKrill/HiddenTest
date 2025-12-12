@@ -4,5 +4,6 @@ namespace HiddenTest.Gameplay.Abstractions
     {
         NameOnly,
         IconOnly,
+        NameAndIcon
     }
 }

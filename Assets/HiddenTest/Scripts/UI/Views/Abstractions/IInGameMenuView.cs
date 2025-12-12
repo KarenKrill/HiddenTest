@@ -12,5 +12,8 @@ namespace HiddenTest.UI.Views.Abstractions
         public event Action? PauseRequested;
 
         public void SetRatingIcon(int index, Sprite sprite);
+        public void AddTask(string name, Sprite icon, TaskViewType taskViewType);
+        public void RemoveTask(string name);
+        public void ClearTaskList();
     }
 }
