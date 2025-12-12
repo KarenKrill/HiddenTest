@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b7d937287b9af46ace1effc47841e2, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: HiddenTest.Gameplay::HiddenTest.Gameplay.GameConfig
+  <PauseTimeScale>k__BackingField: 1
+  <HollowRatingIcon>k__BackingField: {fileID: 21300000, guid: 34b1435bd43a28c4da02c7bd8fe4bbd7, type: 3}
+  <RatingIcon>k__BackingField: {fileID: 21300000, guid: 32e28aaa3c2eea64982ff24aef3b9c21, type: 3}
+  <MaxRating>k__BackingField: 3
+  <MenuBackgroundMusic>k__BackingField: {fileID: 8300000, guid: f22010a27d480cf4184249db98adb70c, type: 3}
+  _levelsConfig:
+  - {fileID: 11400000, guid: 5fc573d1242b7da43b2b6265e7f4c225, type: 2}

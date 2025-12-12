@@ -1,0 +1,18 @@
+#nullable enable
+
+using System;
+
+using KarenKrill.UniCore.UI.Presenters.Abstractions;
+
+using HiddenTest.UI.Views.Abstractions;
+
+namespace HiddenTest.UI.Presenters.Abstractions
+{
+    public interface IPauseMenuPresenter : IPresenter<IPauseMenuView>
+    {
+        public event Action? Resume;
+        public event Action? Restart;
+        public event Action? MainMenu;
+        public event Action? Exit;
+    }
+}

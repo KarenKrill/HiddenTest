@@ -1,0 +1,18 @@
+{
+    "name": "KarenKrill.ContentLoading",
+    "rootNamespace": "KarenKrill.ContentLoading",
+    "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:d01ed72976d1e4d4091c4cc4d0fe80eb",
+        "GUID:8948c1295deb98e48b3e69128665851d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

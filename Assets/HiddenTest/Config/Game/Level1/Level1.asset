@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16de5a742b4e7c54bad850c9a2d64514, type: 3}
+  m_Name: Level1
+  m_EditorClassIdentifier: HiddenTest.Gameplay::HiddenTest.Gameplay.LevelConfig
+  <TaskViewType>k__BackingField: 2
+  <MaxTaskCount>k__BackingField: 3
+  <TimeLimitEnabled>k__BackingField: 1
+  <TimeLimitInSeconds>k__BackingField: 30
+  <BackgroundMusic>k__BackingField: {fileID: 8300000, guid: 7fa763dc120071645ba1a1f7452b800c, type: 3}
+  <LevelPrefab>k__BackingField: {fileID: 6678947527786699579, guid: 9e868f203f6fe4545bbadbb4b0359cef, type: 3}
+  _items:
+  - name: Notebook
+    <Disabled>k__BackingField: 0
+    <Config>k__BackingField: {fileID: 11400000, guid: 269a98f302a99d6438be9280a207f3f0, type: 2}
+  - name: Marmalade
+    <Disabled>k__BackingField: 0
+    <Config>k__BackingField: {fileID: 11400000, guid: 1e8ec52dd20c4d0479c50c7b451ff844, type: 2}
+  - name: Camera
+    <Disabled>k__BackingField: 0
+    <Config>k__BackingField: {fileID: 11400000, guid: f240f05b4e9624140aee4762641aa51b, type: 2}
+  - name: Candlestick
+    <Disabled>k__BackingField: 0
+    <Config>k__BackingField: {fileID: 11400000, guid: ab96822ce127f20408951d03a7038e51, type: 2}
+  - name: Rollers
+    <Disabled>k__BackingField: 0
+    <Config>k__BackingField: {fileID: 11400000, guid: 569bcecfc4134914b8658f517e4036e9, type: 2}
+  - name: Jump rope
+    <Disabled>k__BackingField: 0
+    <Config>k__BackingField: {fileID: 11400000, guid: 13dba3c050c8b38488b4e8a457adf548, type: 2}
